@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Wikipedia Editors</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.2/htmx.min.js"></script>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        th { background-color: #4CAF50; color: white; }
+        .bot { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Top Wikipedia Editors</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>User</th>
+                <th>Edit Count</th>
+                <th>Diff</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="editors-list" hx-get="/refresh" hx-trigger="every 5s">
+            {% include 'table_content.html' %}
+        </tbody>
+    </table>
+</body>
+</html>
