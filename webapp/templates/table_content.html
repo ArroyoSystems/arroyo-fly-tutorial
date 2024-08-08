@@ -1,7 +1,12 @@
 {% for editor in editors %}
     <tr>
         <td>{{ editor.position }}</td>
-        <td class="{{ 'bot' if editor.bot else '' }}">{{ editor.user }}</td>
+        <td>
+          {{ editor.user }}
+            {% if editor.bot %}
+                🤖
+            {% endif %}	  
+        </td>
         <td>{{ editor.count }}</td>
         <td>{{ editor.diff }}</td>
         <td>{{ editor.time }}</td>

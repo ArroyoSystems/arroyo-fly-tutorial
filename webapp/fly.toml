@@ -1,10 +1,12 @@
-# fly.toml app configuration file generated for webapp-twilight-shadow-7537 on 2024-08-02T13:09:58-07:00
+# fly.toml app configuration file generated for wiki-editors on 2024-08-02T15:01:43-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'webapp-twilight-shadow-7537'
+app = 'wiki-editors'
 primary_region = 'sjc'
+
+[build]
 
 [http_service]
   internal_port = 8080
@@ -15,6 +17,4 @@ primary_region = 'sjc'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'

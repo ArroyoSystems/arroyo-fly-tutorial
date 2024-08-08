@@ -1,0 +1,30 @@
+# This should be set to whatever your app name is
+app = 'arroyo-fly'
+primary_region = 'sjc'
+
+[build]
+image = 'ghcr.io/arroyosystems/arroyo:tip'
+
+[http_service]
+internal_port = 8000
+force_https = true
+# The pipeline will run continuously, so we disable auto stop
+auto_stop_machines = 'off'
+# Similarly, we always expect to have one pipeline worker
+auto_start_machines = false
+min_machines_running = 1
+processes = ['app']
+
+[experimental]
+# We need to use the "run" argument to the Arroyo binary for a pipeline
+# cluster
+cmd = ["run"]
+
+[env]
+# Set this to s3::{{AWS_ENDPOINT_URL_S3}}/{{BUCKET_NAME}/wiki-editors
+ARROYO__RUN__STATE_DIR = "s3::https://fly.storage.tigris.dev:443/empty-star-1118/top-editors4"
+ARROYO__API__RUN_HTTP_PORT = 8000
+RUST_LOG = "info"
+
+[[vm]]
+size = 'shared-cpu-1x'
